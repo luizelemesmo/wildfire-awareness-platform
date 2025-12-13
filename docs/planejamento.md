@@ -12,27 +12,27 @@
 
 ## 🎯 Objetivos por Sprint
 
-### **Sprint 0 - SETUP** (Concluída)
+### [**Sprint 0 - SETUP** (Concluída)](https://github.com/iagoizi/wildfire-awareness-platform/milestone/1)
 **Período:** 10/11/2025 - 28/11/2025  
 **Objetivo Principal:** Configuração do ambiente de desenvolvimento e infraestrutura básica
 
 **Tarefas Realizadas:**
-- ✅ [BE] Setup Mailtrap (enhancement) #32
-- ✅ [BE] Setup servidor (enhancement) #33
-- ✅ [BE] Setup GCP (enhancement) #24
-- ✅ [BE] Setup banco de dados (enhancement) #35
-- ✅ [FE] Setup estrutura inicial do projeto (enhancement) #36
-- ✅ [FE] Setup deploy automático (enhancement) #37
-- ✅ [FE] Styleguide - Botões (enhancement) #3
-- ✅ [FE] Styleguide - Inputs (enhancement) #4
-- ✅ [FE] Styleguide - Input de Data (enhancement) #6
-- ✅ [FE] Styleguide - Tipografia (enhancement) #38
+- ✅ [[BE] Setup Mailtrap #32](https://github.com/iagoizi/wildfire-awareness-platform/issues/32)
+- ✅ [[BE] Setup servidor #33](https://github.com/iagoizi/wildfire-awareness-platform/issues/33)
+- ✅ [[BE] Setup GCP #24](https://github.com/iagoizi/wildfire-awareness-platform/issues/34)
+- ✅ [[BE] Setup banco de dados #35](https://github.com/iagoizi/wildfire-awareness-platform/issues/35)
+- ✅ [[FE] Setup estrutura inicial do projeto #36](https://github.com/iagoizi/wildfire-awareness-platform/issues/36)
+- ✅ [[FE] Setup deploy automático #37](https://github.com/iagoizi/wildfire-awareness-platform/issues/37)
+- ✅ [[FE] Styleguide - Botões #3](https://github.com/iagoizi/wildfire-awareness-platform/issues/3)
+- ✅ [[FE] Styleguide - Inputs #4](https://github.com/iagoizi/wildfire-awareness-platform/issues/4)
+- ✅ [[FE] Styleguide - Input de Data #6](https://github.com/iagoizi/wildfire-awareness-platform/issues/5)
+- ✅ [[FE] Styleguide - Tipografia #38](https://github.com/iagoizi/wildfire-awareness-platform/issues/38)
 
 **Entregáveis:** Ambiente de desenvolvimento configurado, repositório estruturado, styleguide inicial
 
 ---
 
-### **Sprint 1 - Formulário de Denúncias** (Em Andamento)
+### [**Sprint 1 - Formulário de Denúncias** (Em Andamento)](https://github.com/iagoizi/wildfire-awareness-platform/milestone/2)
 **Período:** 29/11/2025 - 19/12/2025  
 **Objetivo Principal:** Implementação completa do sistema de registro de denúncias (CU-01)
 
@@ -56,7 +56,7 @@
 
 ---
 
-### **Sprint 2 - Landing Page** (Próxima)
+### [**Sprint 2 - Landing Page** (Próxima)](https://github.com/iagoizi/wildfire-awareness-platform/milestone/3)
 **Período:** 20/12/2025 - 09/01/2026  
 **Objetivo Principal:** Desenvolvimento da landing page pública e sistema de visualização de conteúdo
 
@@ -72,7 +72,7 @@
 
 ---
 
-### **Sprint 3 - Blog de Notícias** (Futura)
+### [**Sprint 3 - Blog de Notícias** (Futura)](https://github.com/iagoizi/wildfire-awareness-platform/milestone/4)
 **Período:** 10/01/2026 - 30/01/2026  
 **Objetivo Principal:** Implementação do CMS para publicação de conteúdo educativo
 
@@ -88,7 +88,7 @@
 
 ---
 
-### **Sprint 4 - Correção de Bugs, Ajustes e Deploy** (Futura)
+### [**Sprint 4 - Correção de Bugs, Ajustes e Deploy** (Futura)](https://github.com/iagoizi/wildfire-awareness-platform/milestone/5)
 **Período:** 31/01/2026 - 20/02/2026  
 **Objetivo Principal:** Finalização do projeto, testes e deploy em produção
 
