@@ -46,7 +46,7 @@ As queimadas criminosas representam uma grave ameaça ambiental no Brasil, causa
 
 ### Backend
 - **Node.js** com **Express**
-- **Banco de Dados**: MariaDB (gerenciado pelo Prisma ORM)
+- **Banco de Dados**: SQLite (gerenciado pelo Prisma ORM)
 - **Autenticação**: JWT (JSON Web Tokens) para segurança
 
 ### CMS (Sistema de Gerenciamento de Conteúdo)
