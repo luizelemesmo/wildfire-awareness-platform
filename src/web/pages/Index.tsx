@@ -10,12 +10,12 @@ const Index = () => {
     <>
       <Helmet>
         <title>Denuncie Queimadas - Proteja Nossas Florestas</title>
-        <meta 
-          name="description" 
-          content="Plataforma para denúncia de queimadas e incêndios florestais no Brasil. Ajude a proteger nossas florestas reportando focos de incêndio." 
+        <meta
+          name="description"
+          content="Plataforma para denúncia de queimadas e incêndios florestais no Brasil. Ajude a proteger nossas florestas reportando focos de incêndio."
         />
       </Helmet>
-      
+
       <div className="min-h-screen bg-background">
         <Header />
         <main>

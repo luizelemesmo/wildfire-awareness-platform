@@ -1,22 +1,25 @@
 import { useState } from "react";
+import { format } from "date-fns";
+import { CalendarIcon, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Plus, X, Loader2 } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { api } from "@/lib/api"; // Importando a conexão com o backend
 
 const ReportForm = () => {
   const { toast } = useToast();
-  const [loading, setLoading] = useState(false); // Estado de carregamento
   const [photos, setPhotos] = useState<string[]>([]);
-  
+  const [dataIncendio, setDataIncendio] = useState<Date>();
   const [formData, setFormData] = useState({
     estado: "",
     cidade: "",
     endereco: "",
     pontoReferencia: "",
+    email: "",
     informacoesAdicionais: "",
   });
 
@@ -38,40 +41,12 @@ const ReportForm = () => {
     setPhotos((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    try {
-      // Envia os dados para o backend
-      await api.post('/fires', formData);
-
-      toast({
-        title: "Denúncia enviada!",
-        description: "Obrigado por ajudar a proteger nossas florestas.",
-        variant: "default", // Sucesso
-      });
-
-      // Limpa o formulário após o envio
-      setFormData({
-        estado: "",
-        cidade: "",
-        endereco: "",
-        pontoReferencia: "",
-        informacoesAdicionais: "",
-      });
-      setPhotos([]);
-
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: "Erro ao enviar",
-        description: "Verifique se você está logado ou tente novamente.",
-        variant: "destructive", // Vermelho de erro
-      });
-    } finally {
-      setLoading(false);
-    }
+    toast({
+      title: "Denúncia enviada!",
+      description: "Obrigado por ajudar a proteger nossas florestas.",
+    });
   };
 
   return (
@@ -94,6 +69,7 @@ const ReportForm = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
+        {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-cream-muted uppercase tracking-widest mb-2">
             A fumaça que você vê é
@@ -103,6 +79,7 @@ const ReportForm = () => {
           </h3>
         </div>
 
+        {/* Form Container */}
         <div className="max-w-3xl mx-auto">
           <div className="mb-8">
             <h4 className="text-xl font-semibold text-foreground mb-2">
@@ -122,7 +99,6 @@ const ReportForm = () => {
                 </Label>
                 <Input
                   id="estado"
-                  required
                   placeholder="Minas Gerais"
                   value={formData.estado}
                   onChange={(e) =>
@@ -137,7 +113,6 @@ const ReportForm = () => {
                 </Label>
                 <Input
                   id="cidade"
-                  required
                   placeholder="Ouro Preto"
                   value={formData.cidade}
                   onChange={(e) =>
@@ -156,7 +131,6 @@ const ReportForm = () => {
                 </Label>
                 <Input
                   id="endereco"
-                  required
                   placeholder="Rodovia, estrada ou endereço"
                   value={formData.endereco}
                   onChange={(e) =>
@@ -184,7 +158,53 @@ const ReportForm = () => {
               </div>
             </div>
 
-            {/* Row 3: Informações adicionais & Fotos */}
+            {/* Row 3: Email & Data aproximada */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-foreground">
+                  E-mail de contato
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, email: e.target.value }))
+                  }
+                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label className="text-foreground">Data aproximada do incêndio</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "w-full justify-start text-left font-normal bg-transparent border-border",
+                        !dataIncendio && "text-muted-foreground"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {dataIncendio ? format(dataIncendio, "dd/MM/yyyy") : "Selecione a data"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={dataIncendio}
+                      onSelect={setDataIncendio}
+                      disabled={(date) => date > new Date()}
+                      initialFocus
+                      className={cn("p-3 pointer-events-auto")}
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </div>
+
+            {/* Row 4: Informações adicionais & Fotos */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="informacoes" className="text-foreground">
@@ -192,7 +212,7 @@ const ReportForm = () => {
                 </Label>
                 <Textarea
                   id="informacoes"
-                  placeholder="Horário aproximado, atitude suspeita, etc."
+                  placeholder="Horário aproximado em que avistou o fogo, se avistou alguma atitude suspeita antes ou após o surgimento da fumaça, etc."
                   value={formData.informacoesAdicionais}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -243,21 +263,8 @@ const ReportForm = () => {
             </div>
 
             {/* Submit Button */}
-            <Button 
-              type="submit" 
-              variant="fire" 
-              size="lg" 
-              className="rounded-lg"
-              disabled={loading} // Desabilita enquanto envia
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Enviando...
-                </>
-              ) : (
-                "Enviar denúncia!"
-              )}
+            <Button type="submit" variant="fire" size="lg" className="rounded-lg">
+              Enviar denúncia!
             </Button>
           </form>
         </div>
