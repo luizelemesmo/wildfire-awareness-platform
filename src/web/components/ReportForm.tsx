@@ -160,23 +160,8 @@ const ReportForm = () => {
               </div>
             </div>
 
-            {/* Row 3: Email & Data aproximada */}
+            {/* Row 3: Data aproximada & Horário aproximado */}
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground">
-                  E-mail de contato
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
-                />
-              </div>
               <div className="space-y-2">
                 <Label className="text-foreground">Data aproximada do incêndio</Label>
                 <Popover>
@@ -204,9 +189,6 @@ const ReportForm = () => {
                   </PopoverContent>
                 </Popover>
               </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -239,6 +221,26 @@ const ReportForm = () => {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Row 5: E-mail de contato */}
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-foreground">
+                E-mail de contato
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="seu@email.com"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, email: e.target.value }))
+                }
+                className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                O seu e-mail será utilizado exclusivamente para atualizá-lo(a) sobre o resultado de sua denúncia.
+              </p>
             </div>
 
             {/* Row 4: Informações adicionais & Fotos */}
