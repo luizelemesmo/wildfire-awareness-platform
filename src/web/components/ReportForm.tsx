@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
@@ -187,7 +188,7 @@ const ReportForm = () => {
                         !dataIncendio && "text-muted-foreground"
                       )}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      <CalendarIcon className="mr-2 h-4 w-4 text-muted-foreground" />
                       {dataIncendio ? format(dataIncendio, "dd/MM/yyyy") : "Selecione a data"}
                     </Button>
                   </PopoverTrigger>
@@ -207,9 +208,24 @@ const ReportForm = () => {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="hora" className="text-foreground">
-                  Horário aproximado do incêndio
-                </Label>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Label
+                      htmlFor="hora"
+                      className={cn(
+                        "text-foreground cursor-help",
+                        !dataIncendio && "opacity-50 text-muted-foreground"
+                      )}
+                    >
+                      Horário aproximado do incêndio
+                    </Label>
+                  </TooltipTrigger>
+                  {!dataIncendio && (
+                    <TooltipContent>
+                      Preencha primeiro a data aproximada em que avistou o incêndio
+                    </TooltipContent>
+                  )}
+                </Tooltip>
                 <Input
                   id="hora"
                   type="time"
