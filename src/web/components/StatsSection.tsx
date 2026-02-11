@@ -15,7 +15,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="bg-secondary py-24">
+    <section className="bg-secondary py-44">
       <div className="container mx-auto px-6">
         <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-cream-muted uppercase tracking-widest text-center mb-20">
           Cada árvore em chamas é<br />
