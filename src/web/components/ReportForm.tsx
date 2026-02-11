@@ -14,6 +14,7 @@ const ReportForm = () => {
   const { toast } = useToast();
   const [photos, setPhotos] = useState<string[]>([]);
   const [dataIncendio, setDataIncendio] = useState<Date>();
+  const [horaIncendio, setHoraIncendio] = useState<string>("");
   const [formData, setFormData] = useState({
     estado: "",
     cidade: "",
@@ -204,6 +205,23 @@ const ReportForm = () => {
               </div>
             </div>
 
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="hora" className="text-foreground">
+                  Horário aproximado do incêndio
+                </Label>
+                <Input
+                  id="hora"
+                  type="time"
+                  placeholder="HH:MM"
+                  value={horaIncendio}
+                  onChange={(e) => setHoraIncendio(e.target.value)}
+                  disabled={!dataIncendio}
+                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                />
+              </div>
+            </div>
+
             {/* Row 4: Informações adicionais & Fotos */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -212,7 +230,7 @@ const ReportForm = () => {
                 </Label>
                 <Textarea
                   id="informacoes"
-                  placeholder="Horário aproximado em que avistou o fogo, se avistou alguma atitude suspeita antes ou após o surgimento da fumaça, etc."
+                  placeholder="Se avistou alguma atitude suspeita antes ou após o surgimento da fumaça, velocidade aproximada do fogo, etc."
                   value={formData.informacoesAdicionais}
                   onChange={(e) =>
                     setFormData((prev) => ({
