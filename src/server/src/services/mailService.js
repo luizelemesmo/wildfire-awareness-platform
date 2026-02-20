@@ -10,12 +10,17 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendMail(to, subject, html) {
-  await transporter.sendMail({
-    from: '"Wildfire" <no-reply@wildfire.com>',
-    to,
-    subject,
-    html,
-  });
+  try {
+    const info = await transporter.sendMail({
+      from: '"Wildfire" <no-reply@wildfire.com>',
+      to,
+      subject,
+      html,
+    });
+    console.log("E-mail enviado: %s", info.messageId);
+  } catch (error) {
+    console.error("Erro detalhado no Mailtrap:", error);
+  }
 }
 
 module.exports = { sendMail };

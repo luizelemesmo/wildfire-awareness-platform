@@ -49,8 +49,7 @@ const ReportForm = () => {
   e.preventDefault();
 
   try {
-    const token = localStorage.getItem("token");
-
+    // Enviando sem cabeçalho de Authorization para teste simplificado
     await axios.post(
       "http://localhost:3000/fires",
       {
@@ -59,11 +58,6 @@ const ReportForm = () => {
         endereco: formData.endereco,
         pontoReferencia: formData.pontoReferencia,
         informacoesAdicionais: formData.informacoesAdicionais,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       }
     );
 
@@ -73,14 +67,14 @@ const ReportForm = () => {
     });
 
   } catch (error: any) {
-    console.log(error.response);
+    console.error(error);
     toast({
       title: "Erro ao enviar denúncia",
-      description: error.response?.data?.error || "Erro",
+      description: "Verifique se o servidor backend está rodando.",
       variant: "destructive",
     });
   }
-  };
+};
 
   return (
     <section id="denuncia" className="section-forest py-24 relative overflow-hidden">
