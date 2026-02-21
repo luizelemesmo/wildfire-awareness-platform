@@ -26,3 +26,14 @@ model FireSpot {
   info      String?
   createdAt DateTime @default(now())
 }
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  summary     String?
+  content     String
+  imageUrl    String?
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+}

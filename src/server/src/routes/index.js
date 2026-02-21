@@ -3,6 +3,7 @@ const routes = express.Router();
 
 const AuthController = require('../controllers/AuthController');
 const FireController = require('../controllers/FireController');
+const ArticleController = require('../controllers/ArticleController');
 const authMiddleware = require('../middlewares/auth');
 
 // --- Rotas Abertas (Qualquer um acessa agora) ---
@@ -17,6 +18,10 @@ routes.delete('/fires/:id', FireController.destroy);
 
 // --- Nuúmeros de Impacto ---
 routes.get('/stats', FireController.stats);
+
+// --- Rotas de Artigos ----
+routes.get('/articles', ArticleController.index);
+routes.post('/articles', ArticleController.store);
 
 // --- Middleware de Proteção ---
 routes.use(authMiddleware);
