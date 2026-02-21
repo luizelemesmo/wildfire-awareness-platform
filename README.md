@@ -78,4 +78,4 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
 
-*Este projeto é uma iniciativa de conscientização e ação ambiental, alinhada com a Agenda 2030 para o Desenvolvimento Sustentável da ONU.*
+*Este projeto é uma iniciativa de conscientização e ação ambiental, alinhada com a Agenda 2030 para o Desenvolvimento Sustentável da ONU. Trabalho desenvolvido como parte da disciplina de Engenharia de Software II, do curso de Ciência da Computação da UFOP.*
