@@ -1,6 +1,6 @@
 # 📂 Documentação do Código Fonte (Source Code)
 
-Este diretório contém toda a lógica da aplicação, componentes visuais, rotas e configurações de estilo do projeto **Denuncie Queimadas**.
+Este diretório contém toda a lógica da aplicação, componentes visuais, rotas e configurações de estilo do projeto.
 
 Abaixo estão detalhadas a estrutura de diretórios e as instruções técnicas para manutenção e execução do código.
 
