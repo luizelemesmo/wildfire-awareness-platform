@@ -1,50 +1,56 @@
-const { sendMail } = require('../services/mailService');
-// const { PrismaClient } = require('@prisma/client');
-// const prisma = new PrismaClient();
+const FireService = require('../services/FireService');
 
 module.exports = {
   async index(req, res) {
-    // Retorna lista vazia por enquanto para não dar erro sem banco
-    return res.json([]);
+    try {
+      const fires = await FireService.getAllFires();
+      return res.json(fires);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao buscar denúncias." });
+    }
   },
 
   async store(req, res) {
-    const { estado, cidade, endereco, pontoReferencia, informacoesAdicionais } = req.body;
-
-    if (!estado || !cidade || !endereco) {
-      return res.status(400).json({ error: "Preencha os campos obrigatórios." });
-    }
-
     try {
-      /* // Comentado para ignorar erro de banco de dados no teste
-      const fire = await prisma.fireSpot.create({
-        data: {
-          estado,
-          cidade,
-          endereco,
-          referencia: pontoReferencia,
-          info: informacoesAdicionais,
-        }
-      });
-      */
-
-      // Envia o e-mail via Mailtrap
-      await sendMail(
-        "wildfireawarenessuf@email.com", 
-        "Nova denúncia registrada 🔥",
-        `
-        <h2>Nova denúncia de queimada</h2>
-        <p><strong>Estado:</strong> ${estado}</p>
-        <p><strong>Cidade:</strong> ${cidade}</p>
-        <p><strong>Endereço:</strong> ${endereco}</p>
-        <p><strong>Info Adicional:</strong> ${informacoesAdicionais || 'Nenhuma'}</p>
-        `
-      );
-
-      return res.json({ message: "Denúncia processada e e-mail enviado!" });
+      const fire = await FireService.createFire(req.body);
+      return res.status(201).json({ message: "Denúncia processada e guardada com sucesso!", fire });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: "Erro interno no servidor" });
+      if (error.message.includes("campos obrigatórios")) {
+        return res.status(400).json({ error: error.message });
+      }
+      return res.status(500).json({ error: "Erro interno no servidor ao guardar a denúncia." });
+    }
+  },
+
+  async update(req, res) {
+    try {
+      const fire = await FireService.updateFire(req.params.id, req.body);
+      return res.json({ message: "Denúncia atualizada com sucesso.", fire });
+    } catch (error) {
+      console.error(error);
+      return res.status(400).json({ error: "Erro ao atualizar. Denúncia não encontrada." });
+    }
+  },
+
+  async destroy(req, res) {
+    try {
+      await FireService.deleteFire(req.params.id);
+      return res.json({ message: "Denúncia eliminada com sucesso." });
+    } catch (error) {
+      console.error(error);
+      return res.status(400).json({ error: "Erro ao eliminar. Denúncia não encontrada." });
+    }
+  },
+
+  async stats(req, res) {
+    try {
+      const impactData = await FireService.getStats();
+      return res.json(impactData);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao buscar números de impacto." });
     }
   }
 };
