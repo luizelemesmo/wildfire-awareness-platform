@@ -6,9 +6,9 @@
 
 Este projeto consiste em uma plataforma web integrada para conscientização ambiental e combate às queimadas criminosas. A solução é composta por duas frentes principais:
 
-1. **Portal de Conteúdo e Educação**: Um blog informativo gerenciado por CMS com notícias, artigos, dados científicos e materiais educativos sobre queimadas, clima e sustentabilidade.
+1. **Sistema de Denúncia de Incêndios**: Uma ferramenta prática que permite aos cidadãos reportarem crimes ambientais de forma eficiente, através do envio de localização geográfica e evidências fotográficas.
 
-2. **Sistema de Denúncia de Incêndios**: Uma ferramenta prática que permite aos cidadãos reportarem crimes ambientais de forma eficiente, através do envio de localização geográfica e evidências fotográficas.
+2. **Portal de Conteúdo e Educação**: Um blog informativo gerenciado por CMS com notícias, artigos, dados científicos e materiais educativos sobre queimadas, clima e sustentabilidade.
 
 O sistema busca unir educação ambiental com ação cidadã, criando um ciclo virtuoso de conscientização, engajamento e fiscalização colaborativa.
 
