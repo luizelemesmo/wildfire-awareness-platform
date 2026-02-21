@@ -9,12 +9,13 @@ const authMiddleware = require('../middlewares/auth');
 routes.post('/register', AuthController.register);
 routes.post('/login', AuthController.login);
 
-// Rotas de incêndio movidas para cá para teste simplificado
+// --- Rotas de incêndio ---
 routes.get('/fires', FireController.index);
 routes.post('/fires', FireController.store);
+routes.put('/fires/:id', FireController.update);
+routes.delete('/fires/:id', FireController.destroy);
 
 // --- Middleware de Proteção ---
-// Somente a rota '/me' continuará protegida
 routes.use(authMiddleware);
 
 routes.get('/me', (req, res) => {
