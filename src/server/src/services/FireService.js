@@ -33,7 +33,23 @@ class FireService {
 
     // Envia o e-mail com CC do usuário
     const cc = email ? [email] : [];
-    const photosInfo = photos && photos.length > 0 ? `<p><strong>Fotos anexadas:</strong> ${photos.length} foto(s)</p>` : '<p><strong>Fotos:</strong> Nenhuma</p>';
+    
+    // Gera o HTML das fotos
+    let photosHTML = '';
+    if (photos && photos.length > 0) {
+      photosHTML = `
+      <h3>Fotos de Evidência (${photos.length})</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0;">
+        ${photos.map((photo, index) => `
+          <div style="border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <img src="${photo}" alt="Evidência ${index + 1}" style="width: 200px; height: 200px; object-fit: cover; display: block;" />
+          </div>
+        `).join('')}
+      </div>
+      `;
+    } else {
+      photosHTML = '<p style="color: #999;"><em>Nenhuma foto anexada</em></p>';
+    }
     
     await sendMail(
       "wildfireawarenessuf@email.com",
@@ -47,7 +63,9 @@ class FireService {
       <p><strong>Ponto de Referência:</strong> ${pontoReferencia || 'Não informado'}</p>
       <p><strong>E-mail de Contato:</strong> ${email || 'Não informado'}</p>
       <p><strong>Informações Adicionais:</strong> ${informacoesAdicionais || 'Nenhuma'}</p>
-      ${photosInfo}
+      <hr style="border: none; border-top: 2px solid #ddd; margin: 20px 0;">
+      ${photosHTML}
+      <hr style="border: none; border-top: 2px solid #ddd; margin: 20px 0;">
       <p><strong>Data/Hora:</strong> ${fire.createdAt.toLocaleString('pt-PT')}</p>
       `,
       cc
