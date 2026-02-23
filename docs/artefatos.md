@@ -355,12 +355,52 @@ Abaixo estão as capturas de tela demonstrando a interface rodando em ambiente l
 ### Tela Inicial (Desktop)
 > Visão geral da Landing Page com navegação e CTA principal.
 
-![Screenshot da Home Desktop](./imgs/home-desktop.png)
+![Screenshot da Home Desktop](./imgs/home-desktop.jpeg)
 
 ### Responsividade (Mobile)
 > Adaptação da interface para dispositivos móveis, garantindo acessibilidade em campo.
 
-![Screenshot Mobile](./imgs/home-mobile.png)
+![Screenshot Mobile](./imgs/home-mobile.jpeg)
+
+### Página de Denúncia (Desktop)
+> Formulário e contexto de denúncia em desktop.
+
+![Screenshot da Denúncia Desktop](./imgs/queimada-desktop.jpeg)
+
+### Página de Denúncia (Mobile)
+> Formulário de denúncia adaptado para mobile.
+
+![Screenshot da Denúncia Mobile](./imgs/queimada-mobile.jpeg)
+
+### Página de Artigos (Desktop)
+> Listagem de artigos em tela grande.
+
+![Screenshot de Artigos Desktop](./imgs/artigos-desktop.jpeg)
+
+### Página de Artigos (Mobile)
+> Listagem de artigos em tela pequena.
+
+![Screenshot de Artigos Mobile](./imgs/artigos-mobile.jpeg)
+
+### Detalhe de Artigo (Mobile)
+> Visualização completa de artigo em mobile.
+
+![Screenshot de Detalhe de Artigo Mobile](./imgs/detalhe-artigo-mobile.jpeg)
+
+### CRM - Login Administrativo
+> Tela de acesso ao painel de gerenciamento.
+
+![Screenshot do Login Admin](./imgs/admin-login.jpeg)
+
+### CRM - Gerenciamento de Artigos (Desktop)
+> Painel administrativo em desktop.
+
+![Screenshot do CRM Desktop](./imgs/crm-desktop.jpeg)
+
+### CRM - Gerenciamento de Artigos (Mobile)
+> Painel administrativo adaptado para mobile.
+
+![Screenshot do CRM Mobile](./imgs/crm-mobile.jpeg)
 
 ---
 
