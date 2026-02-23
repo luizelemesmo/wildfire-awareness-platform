@@ -15,6 +15,7 @@ import axios from "axios";
 
 const ReportForm = () => {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [photos, setPhotos] = useState<string[]>([]);
   const [dataIncendio, setDataIncendio] = useState<Date>();
   const [horaIncendio, setHoraIncendio] = useState<string>("");
@@ -47,6 +48,7 @@ const ReportForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  setIsLoading(true);
 
   try {
     // Enviando sem cabeçalho de Authorization para teste simplificado
@@ -59,12 +61,24 @@ const ReportForm = () => {
         pontoReferencia: formData.pontoReferencia,
         email: formData.email,
         informacoesAdicionais: formData.informacoesAdicionais,
+        photos: photos,
       }
     );
 
     toast({
       title: "Denúncia enviada!",
       description: "Obrigado por ajudar a proteger nossas florestas.",
+    });
+
+    // Limpar o formulário
+    setPhotos([]);
+    setFormData({
+      estado: "",
+      cidade: "",
+      endereco: "",
+      pontoReferencia: "",
+      email: "",
+      informacoesAdicionais: "",
     });
 
   } catch (error: any) {
@@ -74,6 +88,8 @@ const ReportForm = () => {
       description: "Verifique se o servidor backend está rodando.",
       variant: "destructive",
     });
+  } finally {
+    setIsLoading(false);
   }
 };
 
@@ -132,7 +148,8 @@ const ReportForm = () => {
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, estado: e.target.value }))
                   }
-                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+                  disabled={isLoading}
+                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
               <div className="space-y-2">
@@ -146,7 +163,8 @@ const ReportForm = () => {
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, cidade: e.target.value }))
                   }
-                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+                  disabled={isLoading}
+                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
             </div>
@@ -164,7 +182,8 @@ const ReportForm = () => {
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, endereco: e.target.value }))
                   }
-                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+                  disabled={isLoading}
+                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
               <div className="space-y-2">
@@ -181,7 +200,8 @@ const ReportForm = () => {
                       pontoReferencia: e.target.value,
                     }))
                   }
-                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+                  disabled={isLoading}
+                  className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
             </div>
@@ -242,7 +262,7 @@ const ReportForm = () => {
                     placeholder="HH:MM"
                     value={horaIncendio}
                     onChange={(e) => setHoraIncendio(e.target.value)}
-                    disabled={!dataIncendio}
+                    disabled={!dataIncendio || isLoading}
                     className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed pl-9 [&::-webkit-calendar-picker-indicator]:hidden"
                   />
                 </div>
@@ -262,7 +282,8 @@ const ReportForm = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, email: e.target.value }))
                 }
-                className="bg-transparent border-border text-foreground placeholder:text-muted-foreground"
+                disabled={isLoading}
+                className="bg-transparent border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
               />
               <p className="text-xs text-muted-foreground mt-1">
                 O seu e-mail será utilizado exclusivamente para atualizá-lo(a) sobre o resultado de sua denúncia.
@@ -285,7 +306,8 @@ const ReportForm = () => {
                       informacoesAdicionais: e.target.value,
                     }))
                   }
-                  className="bg-muted border-border text-foreground placeholder:text-muted-foreground min-h-[120px] resize-none"
+                  disabled={isLoading}
+                  className="bg-muted border-border text-foreground placeholder:text-muted-foreground min-h-[120px] resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
               <div className="space-y-2">
@@ -328,8 +350,8 @@ const ReportForm = () => {
             </div>
 
             {/* Submit Button */}
-            <Button type="submit" variant="fire" size="lg" className="rounded-lg">
-              Enviar denúncia!
+            <Button type="submit" variant="fire" size="lg" className="rounded-lg" disabled={isLoading}>
+              {isLoading ? "Enviando..." : "Enviar denúncia!"}
             </Button>
           </form>
         </div>
